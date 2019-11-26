@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.RightClick = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.clickToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.function1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compilerBtn = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.RightClick.SuspendLayout();
@@ -40,16 +40,16 @@
             // RightClick
             // 
             this.RightClick.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.clickToolStripMenuItem});
+            this.function1ToolStripMenuItem});
             this.RightClick.Name = "RightClick";
-            this.RightClick.Size = new System.Drawing.Size(99, 26);
+            this.RightClick.Size = new System.Drawing.Size(128, 26);
             // 
-            // clickToolStripMenuItem
+            // function1ToolStripMenuItem
             // 
-            this.clickToolStripMenuItem.Name = "clickToolStripMenuItem";
-            this.clickToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
-            this.clickToolStripMenuItem.Text = "click";
-            this.clickToolStripMenuItem.Click += new System.EventHandler(this.clickToolStripMenuItem_Click);
+            this.function1ToolStripMenuItem.Name = "function1ToolStripMenuItem";
+            this.function1ToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.function1ToolStripMenuItem.Text = "Function1";
+            this.function1ToolStripMenuItem.Click += new System.EventHandler(this.function1ToolStripMenuItem_Click);
             // 
             // compilerBtn
             // 
@@ -59,7 +59,7 @@
             this.compilerBtn.Size = new System.Drawing.Size(115, 41);
             this.compilerBtn.TabIndex = 1;
             this.compilerBtn.Text = "Compile";
-            this.compilerBtn.UseVisualStyleBackColor = false;
+            this.compilerBtn.UseVisualStyleBackColor = true;
             this.compilerBtn.Click += new System.EventHandler(this.compilerBtn_Click);
             // 
             // Form1
@@ -90,9 +90,9 @@
         #endregion
 
         private System.Windows.Forms.ContextMenuStrip RightClick;
-        private System.Windows.Forms.ToolStripMenuItem clickToolStripMenuItem;
         private System.Windows.Forms.Button compilerBtn;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.ToolStripMenuItem function1ToolStripMenuItem;
     }
 }
 

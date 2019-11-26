@@ -18,10 +18,10 @@ namespace BluePrints
     {
 
 
-        GroupBox groupBox = new GroupBox();
-        CheckBox negative = new CheckBox();
-        TextBox textbox = new TextBox();
-        string url;
+        GroupBox Function1 = new GroupBox();
+        CheckBox Fuction1_ActivateButton = new CheckBox();
+        string Function1_code = "import RPi.GPIO as gpio\nimport time\ngpio.setwarnings(False)\ngpio.setmode(gpio.BCM)\ngpio.setup(21, gpio.OUT)\nwhile True:\n    gpio.output(21, gpio.HIGH)\n";
+        string function1FileName = "function1_code";
 
 
         //mouse location
@@ -31,12 +31,12 @@ namespace BluePrints
         {
             InitializeComponent();
             init();
-           
+
         }
 
         private void init()
         {
-            
+
         }
 
 
@@ -44,11 +44,13 @@ namespace BluePrints
         {
 
         }
-        private void clickToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void function1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            groupBox.Show();
-            groupBox.Enabled = true;
+
+            Function1.Show();
+            Function1.Enabled = true;
 
             //label settings
             Label name = new Label();
@@ -57,47 +59,38 @@ namespace BluePrints
             name.Location = new Point(60, 0);
 
             //spawn box at mouse location
-            groupBox.Location = new Point(MousePosition.X - 400, MousePosition.Y - 200);
+            Function1.Location = new Point(MousePosition.X - 400, MousePosition.Y - 200);
 
             //create negative
-            
-            negative.Location = new Point(10, 10);
-            negative.Text = "-";
-            negative.CheckState = CheckState.Checked;
-            negative.ThreeState = false;
+            Fuction1_ActivateButton.Location = new Point(10, 10);
+            Fuction1_ActivateButton.Text = "Is Active";
+            Fuction1_ActivateButton.CheckState = CheckState.Checked;
+            Fuction1_ActivateButton.ThreeState = false;
 
             //create close button
-            Button closeBtn = new Button();
-            closeBtn.Location = new Point(65, 60);
-            closeBtn.Text = "Close";
-            closeBtn.PerformClick();
-
-            //create textbox
-            
-            textbox.Location = new Point(50, 35);
-            textbox.Text = url;
+            Button Function1_closeBtn = new Button();
+            Function1_closeBtn.Location = new Point(65, 60);
+            Function1_closeBtn.Text = "Close";
+            Function1_closeBtn.PerformClick();
 
             //add to groupBox
-            groupBox.Controls.Add(name);
-            groupBox.Controls.Add(negative);
-            groupBox.Controls.Add(closeBtn);
-            groupBox.Controls.Add(textbox);
+            Function1.Controls.Add(name);
+            Function1.Controls.Add(Fuction1_ActivateButton);
+            Function1.Controls.Add(Function1_closeBtn);
 
             //create group box
-            this.Controls.Add(groupBox);
+            this.Controls.Add(Function1);
 
 
-            closeBtn.Click += CloseBtn_Click;
-
-
-
+            Function1_closeBtn.Click += CloseBtn_Click;
 
         }
 
+
         private void CloseBtn_Click(object sender, EventArgs e)
         {
-            groupBox.Hide();
-            groupBox.Enabled = false;
+            Function1.Hide();
+            Function1.Enabled = false;
 
         }
         private static readonly HttpClient client = new HttpClient();
@@ -105,32 +98,33 @@ namespace BluePrints
         private void compilerBtn_Click(object sender, EventArgs e)
         {
 
-            
-            if (negative.CheckState == CheckState.Checked && groupBox.Enabled == true)
+
+            if (Fuction1_ActivateButton.CheckState == CheckState.Checked && Function1.Enabled == true)
             {
-                GetRequest(textbox.Text);
+                byte[] Function1_data = System.Text.ASCIIEncoding.ASCII.GetBytes(Function1_code);
+                string Function1_codeBase64 = System.Convert.ToBase64String(Function1_data);
+
+                byte[] Function1_name_data = System.Text.ASCIIEncoding.ASCII.GetBytes(function1FileName);
+                string function1_name_base64 = System.Convert.ToBase64String(Function1_name_data);
+               GetRequest($"http://192.168.0.249:8080/api?code={Function1_codeBase64}&name={function1_name_base64}");
+               GetRequest($"http://192.168.0.249:8080/exec?file={function1FileName}");
 
             }
-            else
-            {
-                
-            }
+
         }
         async static void GetRequest(string urlPost)
         {
             using (HttpClient client = new HttpClient())
             {
                 using (HttpResponseMessage response = await client.GetAsync(urlPost))
-                {
-                    using (HttpContent content = response.Content)
-                    {
+                {                    using (HttpContent content = response.Content)
+                   {
                         string mycontent = await content.ReadAsStringAsync();
                         Console.WriteLine(mycontent);
                     }
                 }
             }
         }
-
     }
 
 
