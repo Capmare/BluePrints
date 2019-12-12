@@ -39,6 +39,8 @@ namespace BluePrints
         //mouse location
         int mouseX = MousePosition.X;
         int mouseY = MousePosition.Y;
+
+
         public Form1()
         {
             InitializeComponent();
@@ -48,7 +50,7 @@ namespace BluePrints
 
         private void init()
         {
-            
+          
         }
 
 
@@ -75,10 +77,6 @@ namespace BluePrints
             //spawn box at mouse location
             Function1.Location = new Point(MousePosition.X - 400, MousePosition.Y - 200);
 
-            //add new boxFunction
-            Button newBox = new Button();
-            newBox.Text = "add function";
-            newBox.Location = new Point(120,30);
             
             //create negative
             Fuction1_ActivateButton.Location = new Point(10, 20);
@@ -96,16 +94,16 @@ namespace BluePrints
             Function1.Controls.Add(name);
             Function1.Controls.Add(Fuction1_ActivateButton);
             Function1.Controls.Add(Function1_closeBtn);
-            Function1.Controls.Add(newBox);
+
             Function1.Controls.Add(selectFunction2);
             //create group box
             this.Controls.Add(Function1);
 
-            newBox.Click += NewBox_Click;
+
             Function1_closeBtn.Click += CloseBtn_Click;
             
         }
-
+        
         private void NewBox_Click(object sender, EventArgs e)
         {
             selectFunction2.Show();
@@ -113,15 +111,11 @@ namespace BluePrints
             selectFunction2.Location = new Point(20,60);
             selectFunction2.Items.Add("Function2");
             selectFunction2.Items.Add("Function3"); 
-            Function1.Height = 120;
-            selectFunction2.Click += SelectFunction2_Click;
+            Function1.Height = 120;    
 
         }
 
-        private void SelectFunction2_Click(object sender, EventArgs e)
-        {
-            // move close button under the box
-        }
+
 
         private void CloseBtn_Click(object sender, EventArgs e)
         {
@@ -142,8 +136,8 @@ namespace BluePrints
 
                 byte[] Function1_name_data = System.Text.ASCIIEncoding.ASCII.GetBytes(function1FileName);
                 string function1_name_base64 = System.Convert.ToBase64String(Function1_name_data);
-               GetRequest($"http://192.168.0.249:8080/api?code={Function1_codeBase64}&name={function1_name_base64}");
-               GetRequest($"http://192.168.0.249:8080/exec?file={function1FileName}");
+                GetRequest($"http://192.168.0.249:8080/api?code={Function1_codeBase64}&name={function1_name_base64}");
+                GetRequest($"http://192.168.0.249:8080/exec?file={function1FileName}");
 
             }
 
@@ -160,6 +154,13 @@ namespace BluePrints
                     }
                 }
             }
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            meniu Meniu = new meniu();
+            Meniu.Show();
+            this.Hide();
         }
     }
 

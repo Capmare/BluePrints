@@ -18,3 +18,4 @@ G:\Programming\C#\BluePrints\obj\Debug\BluePrints.exe
 G:\Programming\C#\BluePrints\obj\Debug\BluePrints.pdb
 G:\Programming\C#\BluePrints\bin\Debug\Microsoft.VisualStudio.DebuggerVisualizers.dll
 G:\Programming\C#\BluePrints\obj\Debug\BluePrints.csproj.CopyComplete
+G:\Programming\C#\BluePrints\obj\Debug\BluePrints.meniu.resources
